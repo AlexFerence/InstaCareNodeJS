@@ -34,7 +34,7 @@ window.onload = function() {
     xhr.onreadystatechange = function () {
         console.log(xhr);
 
-        if (xhr.readyState == 4 && xhr.status == 201) {
+        if (xhr.readyState == 4 && xhr.status == 200) {
             var json = JSON.parse(xhr.responseText);
             console.log(json);
 
