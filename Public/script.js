@@ -34,7 +34,7 @@ function continueSignup() {
                     var json = JSON.parse(xhr.responseText);
                     localStorage.setItem("token", json.token);
                     console.log(json.token);
-                    window.location = "report";
+                    window.location = "/report";
                 }
             };
 
@@ -55,4 +55,28 @@ function continueSignup() {
             anchor.click();
         }
     }
+}
+
+function doctorSignup() {
+    var xhr = new XMLHttpRequest();
+    var url = "https://instachat-openhack.herokuapp.com/doctor";
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 201) {
+            var json = JSON.parse(xhr.responseText);
+            localStorage.setItem("token", json.token);
+            console.log(json.token);
+            window.location = "/report";
+        }
+    };
+
+    var data = JSON.stringify({
+        "email": document.getElementById("email").value,
+        "username": document.getElementById("username").value,
+        "password": document.getElementById("password").value
+    });
+
+    xhr.send(data);
 }
