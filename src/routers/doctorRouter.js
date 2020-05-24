@@ -54,7 +54,7 @@ router.get('/doctor/allPatients', async (req, res) => {
         patients = patients.forEach((patient) => {
         patient.password = ''
     })
-    res.send(patient)
+        res.send(patient)
     } catch (e) {
         res.status(400).send(e)
     }

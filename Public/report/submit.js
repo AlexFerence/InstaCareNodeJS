@@ -16,8 +16,4 @@ function updateSymptoms() {
     });
 
     xhr.send(data);
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 1c39d35d514550828f63bd4d4cefd3d36699bba6
