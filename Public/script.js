@@ -33,6 +33,8 @@ function continueSignup() {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     var json = JSON.parse(xhr.responseText);
                     localStorage.setItem("token", json.token);
+                    console.log(json.token);
+                    window.location = "report";
                 }
             };
 
