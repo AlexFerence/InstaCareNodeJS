@@ -28,7 +28,7 @@ function go(patientID) {
 window.onload = function() {
     var xhr = new XMLHttpRequest();
     var url = "https://instachat-openhack.herokuapp.com/doctor/allPatients";
-    xhr.open("POST", url, true);
+    xhr.open("GET", url, true);
     xhr.setRequestHeader("Content-Type", "application/json");
 
     xhr.onreadystatechange = function () {
@@ -44,12 +44,5 @@ window.onload = function() {
         }
     };
 
-    var data = JSON.stringify({
-        "email": document.getElementById("email").value,
-        "username": document.getElementById("username").value,
-        "password": document.getElementById("password").value
-    });
-
-    xhr.send(data);
-
+    xhr.send();
 }
