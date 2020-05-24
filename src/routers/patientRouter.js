@@ -5,29 +5,16 @@ const auth = require('../middleware/patientAuth')
 
 const router = new express.Router()
 
-router.get('/patient/all', async (req, res) => {
-    try {
-        const patients = await Patient.find({})
-        res.send(patients) 
-    } catch (e) {
-        res.status(500).send(e)
-    }
+// router.get('/patient/all', async (req, res) => {
+//     try {
+//         const patients = await Patient.find({})
+//         res.send(patients) 
+//     } catch (e) {
+//         res.status(500).send(e)
+//     }
     
-})
+// })
 
-router.get('', (req, res) => {
-    res.send({ message: 'hello' })
-})
-
-router.post('/new', async (req, res) => {
-    try {
-        const p = new Patient({ usernam: "a", email: "b@gmail.com", password:"1234567" })
-        await p.save()
-        res.send(p)
-    } catch(e) {
-        res.send(e)
-    }
-})
 
 router.post('/patient', async (req, res) => {
     try {

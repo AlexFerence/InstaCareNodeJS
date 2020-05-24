@@ -1,0 +1,70 @@
+h1 {
+    font-size: 60px;
+}
+
+h1 {
+    margin-top: 0.67em;
+}
+
+hr {
+    width: 450px;
+    border: 2px solid white;
+}
+
+p {
+    text-align: center;
+}
+
+.wrapper {
+    margin: 20px;
+}
+
+.box {
+    margin: 0;
+    border-radius: 10px 0 0 10px;
+    float: left;
+    width: 500px;
+    padding: 20px;
+    word-wrap: break-word;
+}
+
+.box p {
+    color: #171721;
+}
+
+.go {
+    float: right;
+    margin: 0;
+    border-radius: 0 10px 10px 0;
+    width: 60px;
+    height: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+    h1 {
+        font-size: 50px;
+    }
+
+    p {
+        width: 80vw;
+    }
+
+    hr {
+        width: 300px;
+    }
+
+    .box {
+        width: 300px;
+        border-radius: 10px 10px 0 0;
+    }
+
+    .go {
+        width: 340px;
+        height: 60px;
+        border-radius: 0 0 10px 10px;
+    }
+
+    .go {
+        float: none;
+    }
+}

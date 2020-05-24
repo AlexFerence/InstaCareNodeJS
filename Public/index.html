@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <title>Instacare</title>
+    </head>
+    <body>
+        <div id="main" class="main">
+            <h1><span id="welcome" class="light">Welcome to</span><br>InstaCare</h1>
+            <h2>A virtual hospital</h2>
+            <div id="auth-buttons">
+                <button id="signup-btn" onclick="login();">Log in</button>
+                <button id="login-btn"onclick="signup();">Sign up</button>
+            </div>
+        </div>
+
+        <div class="box" id="login" style="display: none;">
+            <h2>Login</h2>
+
+            <input type="text" placeholder="Username">
+            <input type="password" placeholder="Password">
+            <button>Go</button>
+        </div>
+
+        <div class="box" id="signup" style="display:none; margin-bottom:100px;">
+            <h2>Signup</h2>
+
+            <form onsubmit="continueSignup();return false;">
+                <select id="signupType" required>
+                    <option value="" selected disabled>Type</option>
+                    <option value="patient">Patient</option>
+                    <option value="doctor">Doctor</option>
+                </select>
+
+                <input required type="text" placeholder="Username" id="username">
+                <input required type="email" placeholder="Email" id="email">
+                <input required type="text" placeholder="First Name" id="firstname">
+                <input required type="text" placeholder="Last Name" id="lastname">
+
+                <select required id="gender">
+                    <option value="" selected disabled>Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                    <option value="none">Prefer not to say</option>
+                </select>
+
+                <input required type="password" placeholder="Password" id="password">
+                <input required type="password" placeholder="Repeat Password" id="repeat-password">
+                <button type="submit">Continue</button>
+            </form>
+        </div>
+
+        <div class="box" id="doctor-signup" style="display:none; margin-bottom:100px;">
+            <h2>Doctor Signup</h2>
+            <form>
+                <input required type="text" placeholder="Field of Expertise">
+                <input required type="text" placeholder="Degree">
+                <input required type="text" placeholder="University">
+                <input required type="date" placeholder="Graduation">
+                <button type="submit">Finish</button>
+            </form>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
