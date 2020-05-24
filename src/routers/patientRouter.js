@@ -8,12 +8,16 @@ const router = new express.Router()
 // router.get('/patient/all', async (req, res) => {
 //     try {
 //         const patients = await Patient.find({})
-//         res.send(patients)
+//         res.send(patients) 
 //     } catch (e) {
 //         res.status(500).send(e)
 //     }
     
 // })
+
+router.get('', (req, res) => {
+    res.send({ message: 'hello' })
+})
 
 router.post('/patient', async (req, res) => {
     try {
