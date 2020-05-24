@@ -1,6 +1,6 @@
 function updateSymptoms() {
     var xhr = new XMLHttpRequest();
-    var url = "https://instachat-openhack.herokuapp.com/patient";
+    var url = "https://instachat-openhack.herokuapp.com/patient/me";
     xhr.open("PATCH", url, true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.setRequestHeader("Authorization","Bearer " + localStorage.getItem("token"));
