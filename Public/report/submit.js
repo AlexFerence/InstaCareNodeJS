@@ -12,7 +12,7 @@ function updateSymptoms() {
     };
 
     var data = JSON.stringify({
-        "symptoms": document.getElementById("symptoms").value
+        symptoms: document.getElementById("symptoms").value
     });
 
     xhr.send(data);
