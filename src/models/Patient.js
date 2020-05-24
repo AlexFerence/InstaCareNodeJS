@@ -24,6 +24,7 @@ const patientSchema = new mongoose.Schema({
     },
     symptoms: {
         type: String,
+        default: 'none'
     },
      tokens: [{
          token: {
