@@ -12,4 +12,5 @@ app.use(patientRouter)
 
 app.listen(port, () => {
     console.log('listening on port ' + port)
+    console.log(process.env.MONGODB_URL)
 })

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+require('../db/mongoose')
 
 const patientSchema = new mongoose.Schema({
     username: {
@@ -58,11 +59,10 @@ patientSchema.statics.findByCredentials = async (email, password) => {
 
 patientSchema.pre('save', async function(next) {
     const patient = this
-
     if (patient.isModified('password')) {
         patient.password = await bcrypt.hash(patient.password, 8)
     }
-    
+    next()
     next()
 })
 

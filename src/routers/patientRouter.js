@@ -5,15 +5,15 @@ const auth = require('../middleware/patientAuth')
 
 const router = new express.Router()
 
-// router.get('/patient/all', async (req, res) => {
-//     try {
-//         const patients = await Patient.find({})
-//         res.send(patients) 
-//     } catch (e) {
-//         res.status(500).send(e)
-//     }
+router.get('/patient/all', async (req, res) => {
+    try {
+        const patients = await Patient.find({})
+        res.send(patients) 
+    } catch (e) {
+        res.status(500).send(e)
+    }
     
-// })
+})
 
 router.get('', (req, res) => {
     res.send({ message: 'hello' })
@@ -31,8 +31,11 @@ router.post('/new', async (req, res) => {
 
 router.post('/patient', async (req, res) => {
     try {
+        console.log('1')
         const patient = new Patient(req.body);
+        console.log('2')
         await patient.save()
+        console.log('3')
         const token = await patient.generateAuthToken()
         res.status(201).send({ patient, token })
     } catch (e) {
