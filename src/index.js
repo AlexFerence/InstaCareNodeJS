@@ -1,6 +1,6 @@
 const express = require('express')
 const path = require('path')
-
+const doctorRouter = require('./routers/doctorRouter')
 const patientRouter = require('./routers/patientRouter')
 
 const app = express()
@@ -10,6 +10,7 @@ const staticPath = path.join(__dirname, '../Public')
 
 app.use(express.json())
 app.use(patientRouter)
+app.use(doctorRouter)
 app.use(express.static(staticPath))
 
 app.listen(port, () => {

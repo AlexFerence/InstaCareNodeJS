@@ -71,7 +71,7 @@ router.patch('/patient/me', auth, async (req, res) => {
             return res.status(404).send(e)
         }
 
-        res.send(patient)
+        res.status(200).send(patient)
     } catch (e) {
         console.log(e)
         res.status(400).send(e)

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const express = require('express')
 const Doctor = require('../models/Doctor')
+const Patient = require('../models/Patient')
 const auth = require('../middleware/patientAuth')
 
 const router = new express.Router()
@@ -30,24 +31,37 @@ router.post('/doctor/login', async (req, res) => {
     }
 })
 
-router.post('/patient/logout', auth, async (req, res) => {
+router.post('/doctor/logout', auth, async (req, res) => {
     try {
-        req.patient.tokens = req.patient.tokens.filter((token) => {
+        req.doctor.tokens = req.doctor.tokens.filter((token) => {
             return token.token !== req.token
         })
-        await req.patient.save()
-        res.send({ patient: req.patient, tokens: req.patient.tokens })
+        await req.doctor.save()
+        res.send({ doctor: req.doctor, tokens: req.doctor.tokens })
     } catch (e) {
         res.status(500).send
 
     }
 })
 
-router.get('/patient/me', auth, async (req, res) => {
-    res.send(req.patient)
+router.get('/doctor/me', auth, async (req, res) => {
+    res.send(req.doctor)
 })
 
-router.patch('/patient/me', auth, async (req, res) => {
+router.get('/doctor/allPatients', async (req, res) => {
+    try {
+        const patients = await Patient.find({})
+        patients = patients.forEach((patient) => {
+        patient.password = ''
+    })
+    res.send(patient)
+    } catch (e) {
+        res.status(400).send(e)
+    }
+    
+})
+
+router.patch('/doctor/me', auth, async (req, res) => {
     try {
         const updates = Object.keys(req.body)
         const allowed = ['name', 'email', 'password', 'age', 'symptoms']
@@ -58,18 +72,18 @@ router.patch('/patient/me', auth, async (req, res) => {
         if (!isValid) {
             return res.status(404).send({ error: 'Invalid updates' })
         }
-        const patient = req.patient
+        const doctor = req.doctor
 
         updates.forEach((update) => {
-            patient[update] = req.body[update]
+            doctor[update] = req.body[update]
         })
-        await patient.save()
+        await doctor.save()
 
-        if (!patient) {
+        if (!doctor) {
             return res.status(404).send(e)
         }
 
-        res.send(patient)
+        res.send(doctor)
     } catch (e) {
         console.log(e)
         res.status(400).send(e)
