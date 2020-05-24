@@ -1,31 +1,29 @@
 const mongoose = require('mongoose')
 const express = require('express')
-const Patient = require('../models/Patient')
+const Doctor = require('../models/Doctor')
 const auth = require('../middleware/patientAuth')
 
 const router = new express.Router()
 
 
-router.post('/patient', async (req, res) => {
+router.post('/doctor', async (req, res) => {
     try {
         console.log('1')
-        const patient = new Patient(req.body);
-        console.log('2')
-        await patient.save()
-        console.log('3')
-        const token = await patient.generateAuthToken()
-        res.status(201).send({ patient, token })
+        const doctor = new Doctor(req.body);
+        await doctor.save()
+        const token = await doctor.generateAuthToken()
+        res.status(201).send({ doctor, token })
     } catch (e) {
         console.log(e)
         res.status(500).send(e)
     }
 })
 
-router.post('/patient/login', async (req, res) => {
+router.post('/doctor/login', async (req, res) => {
     try {
-        const patient = await Patient.findByCredentials(req.body.email, req.body.password)
-        const token = await patient.generateAuthToken()
-        res.status(200).send({ patient, token })
+        const doctor = await Doctor.findByCredentials(req.body.email, req.body.password)
+        const token = await doctor.generateAuthToken()
+        res.status(200).send({ doctor, token })
     } catch (e) {
         console.log(e)
         res.status(400).send('Cannot login')

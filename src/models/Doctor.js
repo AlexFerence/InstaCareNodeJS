@@ -37,35 +37,34 @@ doctorSchema.methods.generateAuthToken = async function () {
     const doctor = this
     const token = jwt.sign({ _id: doctor._id.toString() }, process.env.SECRET)
 
-    doctor.tokens = patient.tokens.concat({ token })
+    doctor.tokens = doctor.tokens.concat({ token })
     await doctor.save()
 
     return token
 }
 
-patientSchema.statics.findByCredentials = async (email, password) => {
-    const patient = await Patient.findOne({ email })
+doctorSchema.statics.findByCredentials = async (email, password) => {
+    const doctor = await Doctor.findOne({ email })
 
-    if (!patient) {
+    if (!doctor) {
         throw new Error('Unable to log')
     }
-    const isMatch = await bcrypt.compare(password, patient.password)
+    const isMatch = await bcrypt.compare(password, doctor.password)
     
     if (!isMatch) {
         throw new Error('Unable to logine')
     }
-    return patient
+    return doctor
 }
 
-patientSchema.pre('save', async function(next) {
-    const patient = this
-    if (patient.isModified('password')) {
-        patient.password = await bcrypt.hash(patient.password, 8)
+doctorSchema.pre('save', async function(next) {
+    const doctor = this
+    if (doctor.isModified('password')) {
+        doctor.password = await bcrypt.hash(doctor.password, 8)
     }
-    next()
     next()
 })
 
-const Patient = mongoose.model('Patient', patientSchema)
+const Doctor = mongoose.model('Doctor', doctorSchema)
 
-module.exports = Patient
+module.exports = Doctor
