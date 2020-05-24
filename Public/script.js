@@ -32,13 +32,15 @@ function continueSignup() {
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     var json = JSON.parse(xhr.responseText);
-                    localStorage.setItem("lastname", json.token);
+                    localStorage.setItem("token", json.token);
+                    console.log(json.token);
+                    window.location = "report";
                 }
             };
 
             var data = JSON.stringify({
                 "email": document.getElementById("email").value,
-                "email": document.getElementById("email").value,
+                "username": document.getElementById("username").value,
                 "password": document.getElementById("password").value
             });
 
