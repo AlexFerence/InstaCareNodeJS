@@ -56,6 +56,7 @@ router.get('/doctor/allPatients', async (req, res) => {
     })
         res.send(patient)
     } catch (e) {
+        console.log(e)
         res.status(400).send(e)
     }
     
