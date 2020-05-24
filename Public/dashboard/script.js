@@ -26,9 +26,30 @@ function go(patientID) {
 }
 
 window.onload = function() {
-    var testData = [{patientID: 342947, symptoms: "I have a headache and arms and legs are aching. I've been sweating a lot recently."}]
+    var xhr = new XMLHttpRequest();
+    var url = "https://instachat-openhack.herokuapp.com/doctor/allPatients";
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
 
-    for(symptom of testData) {
-        createBox(symptom.symptoms, symptom.patientID);
-    }
+    xhr.onreadystatechange = function () {
+        console.log(xhr);
+
+        if (xhr.readyState == 4 && xhr.status == 201) {
+            var json = JSON.parse(xhr.responseText);
+            console.log(json);
+
+            for(symptom of json) {
+                createBox(symptom.symptoms, symptom.patientID);
+            }
+        }
+    };
+
+    var data = JSON.stringify({
+        "email": document.getElementById("email").value,
+        "username": document.getElementById("username").value,
+        "password": document.getElementById("password").value
+    });
+
+    xhr.send(data);
+
 }
