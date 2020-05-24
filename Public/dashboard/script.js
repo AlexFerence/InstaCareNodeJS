@@ -26,22 +26,22 @@ function go(patientID) {
 }
 
 window.onload = function() {
-    var xhr = new XMLHttpRequest();
-    var url = "https://instachat-openhack.herokuapp.com/doctor/allPatients";
-    xhr.open("GET", url, true);
+    var data = [
+    {
+        patientID: 5243,
+        symptoms: "Headache, muscle weakness, sweating"
+    },
+    {
+        patientID: 6544,
+        symptoms: "Dizziness"
+    },
+    {
+        patientID: 2364,
+        symptoms: "Stomach pain, vomiting"
+    }
+]
 
-    xhr.onreadystatechange = function () {
-        console.log(xhr);
-
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            var json = JSON.parse(xhr.responseText);
-            console.log(json);
-
-            for(symptom of json) {
-                createBox(symptom.symptoms, symptom.patientID);
-            }
-        }
-    };
-
-    xhr.send();
+    for(symptom of data) {
+        createBox(symptom.symptoms, symptom.patientID);
+    }
 }
