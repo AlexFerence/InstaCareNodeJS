@@ -30,7 +30,7 @@ function continueSignup() {
             xhr.setRequestHeader("Content-Type", "application/json");
 
             xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
+                if (xhr.readyState == 4 && xhr.status == 201) {
                     var json = JSON.parse(xhr.responseText);
                     localStorage.setItem("token", json.token);
                     console.log(json.token);
