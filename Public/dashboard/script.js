@@ -29,7 +29,6 @@ window.onload = function() {
     var xhr = new XMLHttpRequest();
     var url = "https://instachat-openhack.herokuapp.com/doctor/allPatients";
     xhr.open("GET", url, true);
-    xhr.setRequestHeader("Content-Type", "application/json");
 
     xhr.onreadystatechange = function () {
         console.log(xhr);
